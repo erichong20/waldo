@@ -1,0 +1,199 @@
+@font-face{
+  font-family: 'Alata';
+  src: local('Alata'), url(../fonts/Alata/Alata-Regular.ttf) format('truetype');
+}
+
+:root{
+  --deep-blue: #001f3f;
+  --accent1: #FFDC00;
+  --accent2: coral;
+  --accent3: #85144b;
+  --background: whitesmoke;
+}
+
+body{
+  background-color: var(--background);
+}
+
+.boardContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  margin-bottom: 30px;
+}
+
+.board{
+  margin-top: 10px;
+  width: 800px;
+
+  margin-left:auto;
+  margin-right:auto;
+
+  position: relative;
+}
+
+.boardImage{
+  width: 800px;
+  height: auto;
+
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.selector{
+  position: absolute;
+
+  display: flex;
+}
+
+.boundingBox {
+  height: 80px;
+  width: 50px;
+  border: solid 3px white;
+}
+
+.characterMenu {
+  padding: 5px 5px;
+  background-color: white;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.characterItem:hover{
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+.foundBox {
+  position: absolute;
+
+  height: 30px;
+  width: 30px;
+  border: solid 3px red;
+}
+
+
+.playButton{
+  font-family: 'Alata';
+
+  color: var(--deep-blue);
+  background-color: var(--background);
+
+  border: 1px solid var(--deep-blue);
+  padding:0.8em 1.2em;
+  border-radius: 0.18em;
+  justify-content: center;
+  align-content: center;
+
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100px;
+}
+
+.hidden{
+  display: none;
+}
+
+.playButton:hover{
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+.secondaryDisplay{
+
+}
+
+.strikeout {
+  opacity: 0.3;
+}
+
+.charactersTab{
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.characterCard{
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+
+  height: 60px;
+  width: 50px;
+}
+
+.iconContainer{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.charImg{
+  height: 60px;
+  width: auto;
+}
+
+.headerContainer{
+  display: flex;
+  padding: 20px;
+  justify-content: center;
+}
+
+.header{
+  font-size: 2rem;
+  color: var(--deep-blue);
+}
+
+.main{
+  font-family: 'Alata';
+  padding-bottom: 4rem;
+}
+
+.pageContainer{
+  position: relative;
+  min-height: 100vh;
+}
+
+footer {
+	position: absolute;
+	bottom: 0;
+  left: 0;
+  height: 4rem;
+
+	width: 100%;
+
+	display: flex;
+	justify-content: center;
+
+	background-color: var(--background);
+}
+
+footer p {
+	font-family: 'Alata';
+	font-size: 1.3rem;
+	color: black;
+
+	padding: 0.5em 0;
+	line-height: 2em;
+}
+
+footer p a {
+  text-decoration: none;
+	color: black;
+  font-weight: bold;
+  opacity: 0.5;
+}
+
+footer p a:hover {
+	height: 10px;
+  opacity: 0.8;
+}
