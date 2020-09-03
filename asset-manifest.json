@@ -1,0 +1,33 @@
+{
+  "files": {
+    "main.css": "/waldo/static/css/main.e2606254.chunk.css",
+    "main.js": "/waldo/static/js/main.b14e8328.chunk.js",
+    "main.js.map": "/waldo/static/js/main.b14e8328.chunk.js.map",
+    "runtime-main.js": "/waldo/static/js/runtime-main.fbce9503.js",
+    "runtime-main.js.map": "/waldo/static/js/runtime-main.fbce9503.js.map",
+    "static/js/2.33728d12.chunk.js": "/waldo/static/js/2.33728d12.chunk.js",
+    "static/js/2.33728d12.chunk.js.map": "/waldo/static/js/2.33728d12.chunk.js.map",
+    "index.html": "/waldo/index.html",
+    "precache-manifest.3de27a1c354f2260d8e1734b14d66945.js": "/waldo/precache-manifest.3de27a1c354f2260d8e1734b14d66945.js",
+    "service-worker.js": "/waldo/service-worker.js",
+    "static/css/main.e2606254.chunk.css.map": "/waldo/static/css/main.e2606254.chunk.css.map",
+    "static/js/2.33728d12.chunk.js.LICENSE.txt": "/waldo/static/js/2.33728d12.chunk.js.LICENSE.txt",
+    "static/media/Alata-Regular.ttf": "/waldo/static/media/Alata-Regular.03a7f67c.ttf",
+    "static/media/odlaw.png": "/waldo/static/media/odlaw.43558192.png",
+    "static/media/waldo.png": "/waldo/static/media/waldo.5721614a.png",
+    "static/media/waldo1.jpg": "/waldo/static/media/waldo1.e715f7d4.jpg",
+    "static/media/waldo2.jpg": "/waldo/static/media/waldo2.973b2d13.jpg",
+    "static/media/waldo3.jpg": "/waldo/static/media/waldo3.21c649da.jpg",
+    "static/media/waldo4.jpg": "/waldo/static/media/waldo4.e06e29dc.jpg",
+    "static/media/waldo5.jpg": "/waldo/static/media/waldo5.4a340c16.jpg",
+    "static/media/waldo6.jpg": "/waldo/static/media/waldo6.cbae0d7d.jpg",
+    "static/media/waldo7.jpg": "/waldo/static/media/waldo7.23d4855c.jpg",
+    "static/media/wizard.png": "/waldo/static/media/wizard.b66ab758.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.fbce9503.js",
+    "static/js/2.33728d12.chunk.js",
+    "static/css/main.e2606254.chunk.css",
+    "static/js/main.b14e8328.chunk.js"
+  ]
+}
