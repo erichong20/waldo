@@ -69,6 +69,7 @@ class Board extends React.Component {
   onBackClick(){
     this.setState({time: 0});
     clearInterval(this.timer);
+    this.setState({guessLocation: [null,null]});
 
     this.setState({boardHidden: true});
     this.setState({waldoFound: false, odlawFound: false, wizardFound: false});
@@ -87,8 +88,7 @@ class Board extends React.Component {
     const ref = firebase.firestore().collection("times");
 
     ref.add({
-      start: startTime,
-      end: null
+      start: startTime
     }).then((docRef) => {
       this.setState({currentTryRef: docRef});
       console.log("Document written with ID: ", docRef.id);
