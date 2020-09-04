@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/waldo/static/css/main.ce2adf51.chunk.css",
-    "main.js": "/waldo/static/js/main.9ef37e47.chunk.js",
-    "main.js.map": "/waldo/static/js/main.9ef37e47.chunk.js.map",
+    "main.js": "/waldo/static/js/main.6223606d.chunk.js",
+    "main.js.map": "/waldo/static/js/main.6223606d.chunk.js.map",
     "runtime-main.js": "/waldo/static/js/runtime-main.fbce9503.js",
     "runtime-main.js.map": "/waldo/static/js/runtime-main.fbce9503.js.map",
     "static/js/2.fa4f00c0.chunk.js": "/waldo/static/js/2.fa4f00c0.chunk.js",
     "static/js/2.fa4f00c0.chunk.js.map": "/waldo/static/js/2.fa4f00c0.chunk.js.map",
     "index.html": "/waldo/index.html",
-    "precache-manifest.b16d20f43fcce161c81a0c21056caf0e.js": "/waldo/precache-manifest.b16d20f43fcce161c81a0c21056caf0e.js",
+    "precache-manifest.c3ea5466143302ef1f7ee29e9c92c0b5.js": "/waldo/precache-manifest.c3ea5466143302ef1f7ee29e9c92c0b5.js",
     "service-worker.js": "/waldo/service-worker.js",
     "static/css/main.ce2adf51.chunk.css.map": "/waldo/static/css/main.ce2adf51.chunk.css.map",
     "static/js/2.fa4f00c0.chunk.js.LICENSE.txt": "/waldo/static/js/2.fa4f00c0.chunk.js.LICENSE.txt",
@@ -26,6 +26,6 @@
     "static/js/runtime-main.fbce9503.js",
     "static/js/2.fa4f00c0.chunk.js",
     "static/css/main.ce2adf51.chunk.css",
-    "static/js/main.9ef37e47.chunk.js"
+    "static/js/main.6223606d.chunk.js"
   ]
 }
