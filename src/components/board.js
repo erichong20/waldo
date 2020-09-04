@@ -50,9 +50,9 @@ class Board extends React.Component {
       wizardFound: false,
       charData: null,
       currentTryRef: null,
-      startTime: null,
       interval: null,
-      time: 0
+      time: 0,
+      start: 0
     }
 
     this.onStartClick = this.onStartClick.bind(this);
@@ -83,7 +83,7 @@ class Board extends React.Component {
     })
 
     let startTime = new firebase.firestore.Timestamp.now();
-    this.setState({startTime: startTime});
+
     const ref = firebase.firestore().collection("times");
 
     ref.add({
@@ -150,17 +150,16 @@ class Board extends React.Component {
 
   checkForWin(){
     if(this.state.waldoFound && this.state.odlawFound && this.state.wizardFound){
-      clearInterval(this.timer)
+      clearInterval(this.timer);
+
+      console.log(this.state.time);
       this.state.currentTryRef.update({
-        end: new firebase.firestore.Timestamp.now()
+        elapsedTime: this.state.time
       }).then(()=>{
         console.log("success");
         this.state.currentTryRef.get().then((doc)=>{
-          let sec = doc.data().end.seconds - doc.data().start.seconds;
-          let milli = (doc.data().end.nanoseconds - doc.data().start.nanoseconds)/1000000;
-          let time = sec+(milli/1000);
-          this.checkForHighScore(time);
-          window.alert(`You win! You completed the game in ${time} seconds`);
+          this.checkForHighScore(doc.data().elapsedTime);
+          window.alert(`You win! You completed the game in ${doc.data().elapsedTime} seconds`);
         });
       });
     }
@@ -201,9 +200,13 @@ class Board extends React.Component {
   }
 
   startTimer(){
+    this.setState({
+      time: this.state.time,
+      start: Date.now() - this.state.time
+    })
     this.timer = setInterval(() => this.setState({
-      time: this.state.time + 1
-    }), 1000);
+      time: (Date.now() - this.state.start)/1000
+    }), 1);
   }
 
   changeBoard(e){
