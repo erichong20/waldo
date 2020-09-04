@@ -5,38 +5,24 @@ import img2 from "../imgs/waldo2.jpg"
 import img3 from "../imgs/waldo3.jpg"
 import img4 from "../imgs/waldo4.jpg"
 import img5 from "../imgs/waldo5.jpg"
-import img6 from "../imgs/waldo6.jpg"
-import img7 from "../imgs/waldo7.jpg"
 
 import BoundingBox from "./boundingbox.js"
 import FoundBox from "./foundbox.js"
 import CharactersTab from "./characterstab.js"
-
-import * as firebase from "firebase/app";
-import "firebase/analytics";
-import "firebase/auth";
-import "firebase/firestore";
-import "firebase/auth";
-import "firebase/database"
-
-// TODO: Replace the following with your app's Firebase project configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyDF4j_1OTDcIyxD7rVu2YOZZQ5JUbQX8Sw",
-        authDomain: "waldo-fb77e.firebaseapp.com",
-        databaseURL: "https://waldo-fb77e.firebaseio.com",
-        projectId: "waldo-fb77e",
-        storageBucket: "waldo-fb77e.appspot.com",
-        messagingSenderId: "673162512383",
-        appId: "1:673162512383:web:8ea82ebc02f93b00c7c9ca",
-        measurementId: "G-P9MHP1K83K"
-};
-
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+import Menu from "./menu.js"
+import HighScores from "./highscores.js"
+import Timer from "./timer.js"
+import firebase from "./firebaseconfig.js"
 
 function PlayButton(props){
   return(
-    <button className={"playButton " + (props.isBoardHidden ? '' : 'hidden')} value="start" onClick={props.onClick}>START</button>
+    <button className={"playButton " + (props.isButtonHidden ? 'hidden' : '')} value="start" onClick={props.onClick}>START</button>
+  );
+}
+
+function BackButton(props){
+  return(
+    <button className={"playButton " + (!props.isButtonHidden ? 'hidden' : '')} value="back" onClick={props.onClick}>BACK</button>
   );
 }
 
@@ -63,25 +49,41 @@ class Board extends React.Component {
       odlawFound: false,
       wizardFound: false,
       charData: null,
-      currentTryRef: null
+      currentTryRef: null,
+      startTime: null,
+      interval: null,
+      time: 0
     }
 
     this.onStartClick = this.onStartClick.bind(this);
+    this.onBackClick = this.onBackClick.bind(this);
     this.onImageClick = this.onImageClick.bind(this);
     this.onCharSelect = this.onCharSelect.bind(this);
     this.verifyClick = this.verifyClick.bind(this);
     this.checkForWin = this.checkForWin.bind(this);
     this.checkForHighScore = this.checkForHighScore.bind(this);
+    this.changeBoard = this.changeBoard.bind(this);
+    this.startTimer = this.startTimer.bind(this);
+  }
 
-    this.initializeCharData().then((data)=>{
-      this.setState({charData: data});
-    })
+  onBackClick(){
+    this.setState({time: 0});
+    clearInterval(this.timer);
+
+    this.setState({boardHidden: true});
+    this.setState({waldoFound: false, odlawFound: false, wizardFound: false});
   }
 
   onStartClick(e){
     this.setState({boardHidden: false});
+    this.startTimer();
+
+    this.setCharData().then((data)=>{
+      this.setState({charData: data});
+    })
 
     let startTime = new firebase.firestore.Timestamp.now();
+    this.setState({startTime: startTime});
     const ref = firebase.firestore().collection("times");
 
     ref.add({
@@ -94,8 +96,6 @@ class Board extends React.Component {
     .catch((error) => {
       console.error("Error adding document: ", error);
     });
-
-    console.log(startTime);
   }
 
   onImageClick(e){
@@ -103,15 +103,12 @@ class Board extends React.Component {
     const x = e.clientX - rect.left; //x position within the element.
     const y = e.clientY - rect.top;  //y position within the element.
 
-    console.log(x);
-    console.log(y);
-
     this.setState({isSelectorHidden: !this.state.isSelectorHidden});
 
     this.setState({guessLocation: [x,y]});
   }
 
-  initializeCharData(){
+  setCharData(){
     const ref = firebase.firestore().collection("characterLocations").doc(this.state.boardDoc);
 
     return ref.get().then((doc) => {
@@ -153,6 +150,7 @@ class Board extends React.Component {
 
   checkForWin(){
     if(this.state.waldoFound && this.state.odlawFound && this.state.wizardFound){
+      clearInterval(this.timer)
       this.state.currentTryRef.update({
         end: new firebase.firestore.Timestamp.now()
       }).then(()=>{
@@ -165,17 +163,75 @@ class Board extends React.Component {
           window.alert(`You win! You completed the game in ${time} seconds`);
         });
       });
-
-      //this.setState({waldoFound: false, odlawFound: false, wizardFound: false});
     }
   }
 
   checkForHighScore(newTime){
+    const ref = firebase.firestore().collection("highScores").doc(this.state.boardDoc);
 
+    ref.get().then((doc) => {
+      if (doc.exists) {
+          let data = doc.data();
+          return data;
+      } else {
+          // doc.data() will be undefined in this case
+          console.log("No such document!");
+      }
+    }).then((data)=>{
+      if(data.highscore[1] > newTime){
+        let newName = window.prompt("Congratulations! You achieved a high score! What would you like your name to be on the leaderboard?","Anonymous");
+        ref.update({
+          highscore: [newName, newTime],
+          highscore2: data.highscore,
+          highscore3: data.highscore2
+        });
+      } else if (data.highscore2[1] > newTime){
+        let newName = window.prompt("Congratulations! You achieved a high score! What would you like your name to be on the leaderboard?","Anonymous");
+        ref.update({
+          highscore2: [newName, newTime],
+          highscore3: data.highscore2
+        });
+      } else if (data.highscore3[1] > newTime){
+        let newName = window.prompt("Congratulations! You achieved a high score! What would you like your name to be on the leaderboard?","Anonymous");
+        ref.update({
+          highscore3: [newName, newTime]
+        });
+      }
+    });
+  }
+
+  startTimer(){
+    this.timer = setInterval(() => this.setState({
+      time: this.state.time + 1
+    }), 1000);
+  }
+
+  changeBoard(e){
+
+    this.setState({boardDoc: e.target.name});
+
+    switch(e.target.name){
+      case "waldo1":
+        this.setState({displayBoard: img1})
+        break;
+      case "waldo2":
+        this.setState({displayBoard: img2})
+        break;
+      case "waldo3":
+        this.setState({displayBoard: img3})
+        break;
+      case "waldo4":
+        this.setState({displayBoard: img4})
+        break;
+      case "waldo5":
+        this.setState({displayBoard: img5})
+        break;
+    };
+
+    //change boardDoc and also displayBoard
   }
 
   render(){
-
     let waldoBox, odlawBox, wizardBox, fireworks;
 
     if(this.state.waldoFound){
@@ -197,7 +253,10 @@ class Board extends React.Component {
     return(
       <div className="boardContainer">
         {fireworks}
-        <PlayButton onClick={this.onStartClick} isBoardHidden={this.state.boardHidden}/>
+        <PlayButton onClick={this.onStartClick} isButtonHidden={!this.state.boardHidden}/>
+        <BackButton onClick={this.onBackClick} isButtonHidden={!this.state.boardHidden}/>
+        <Menu onSwap={this.changeBoard} isMenuHidden={!this.state.boardHidden} currentBoard={this.state.boardDoc}/>
+        <HighScores currentBoard={this.state.boardDoc} isHidden={!this.state.boardHidden}/>
         <div className={"board " + (this.state.boardHidden ? "hidden" : "")}>
           <img src={this.state.displayBoard} alt="waldo" className="boardImage" onClick={this.onImageClick}></img>
           <BoundingBox coords={this.state.guessLocation} isHidden={this.state.isSelectorHidden} onCharSelect={this.onCharSelect}/>
@@ -208,6 +267,7 @@ class Board extends React.Component {
         </div>
         <div className={"secondaryDisplay " + (this.state.boardHidden ? "hidden" : "")}>
           <CharactersTab waldoFound={this.state.waldoFound} odlawFound={this.state.odlawFound} wizardFound={this.state.wizardFound}/>
+          <Timer time={this.state.time} />
         </div>
       </div>
     );

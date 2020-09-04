@@ -96,7 +96,7 @@ body{
 }
 
 .hidden{
-  display: none;
+  display: none !important;
 }
 
 .playButton:hover{
@@ -104,12 +104,23 @@ body{
   opacity: 0.5;
 }
 
-.secondaryDisplay{
-
-}
-
 .strikeout {
   opacity: 0.3;
+}
+
+.secondaryDisplay{
+  margin-left: auto;
+  margin-right: auto;
+
+  width: 600px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center
+}
+
+.timerContainer{
+  font-size: 1.5rem;
+  width: 100px;
 }
 
 .charactersTab{
@@ -118,8 +129,6 @@ body{
   margin-top: 10px;
 
   width: 400px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .characterCard{
@@ -161,6 +170,82 @@ body{
 .pageContainer{
   position: relative;
   min-height: 100vh;
+}
+
+.menuContainer{
+  display: flex;
+  width: 80%;
+
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.boardOptions{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-top: 20px;
+
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.boardButton{
+  font-family: 'Alata';
+  color: var(--deep-blue);
+  background-color: var(--background);
+  border: 1px solid var(--deep-blue);
+
+  padding:0.8em 1.2em;
+  border-radius: 0.18em;
+  justify-content: center;
+  align-content: center;
+
+  display: block;
+
+  width: 100px;
+  height: 50px;
+
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 10px;
+}
+
+.boardButton:hover{
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.boardSelected{
+  background: var(--deep-blue);
+  color: whitesmoke;
+}
+
+.highScoreDisplay{
+  color: var(--deep-blue);
+  border-radius: 0.18em;
+  display: block;
+  justify-content: center;
+  text-align: center;
+
+  width: 200px;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+
+  border: 1px solid var(--deep-blue);
+  padding: 10px 10px;
+}
+
+.highScoreLabel{
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.highScoreItem{
+  margin-top: 5px;
+  display: flex;
+  justify-content: space-between;
 }
 
 footer {
