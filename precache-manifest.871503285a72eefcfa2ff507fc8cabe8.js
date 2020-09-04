@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "47fe0662f4abbae91195623e11e75b76",
+    "revision": "694d8d4e865a4bcad77aa25d018be5b6",
     "url": "/waldo/index.html"
   },
   {
-    "revision": "320325bcf9be6eb01c7d",
-    "url": "/waldo/static/css/main.e2606254.chunk.css"
+    "revision": "bb1d33c312c28048d1fe",
+    "url": "/waldo/static/css/main.ce2adf51.chunk.css"
   },
   {
-    "revision": "d300b4d757b51a6281e5",
-    "url": "/waldo/static/js/2.33728d12.chunk.js"
+    "revision": "a08e512ed905b5b5d3a3",
+    "url": "/waldo/static/js/2.fa4f00c0.chunk.js"
   },
   {
     "revision": "27bbadeef7d02efcaae5fffc16c6b291",
-    "url": "/waldo/static/js/2.33728d12.chunk.js.LICENSE.txt"
+    "url": "/waldo/static/js/2.fa4f00c0.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "320325bcf9be6eb01c7d",
-    "url": "/waldo/static/js/main.b14e8328.chunk.js"
+    "revision": "bb1d33c312c28048d1fe",
+    "url": "/waldo/static/js/main.bef1ceb0.chunk.js"
   },
   {
     "revision": "2749c421917ef3420223",
@@ -44,8 +44,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/waldo/static/media/waldo2.973b2d13.jpg"
   },
   {
-    "revision": "21c649da5db6ad05a7491e281fa7916f",
-    "url": "/waldo/static/media/waldo3.21c649da.jpg"
+    "revision": "cbae0d7d7b6c36e0fe492e9e2d6840ce",
+    "url": "/waldo/static/media/waldo3.cbae0d7d.jpg"
   },
   {
     "revision": "e06e29dc531c58f54e2d0438810feed1",
@@ -54,14 +54,6 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "4a340c16133025568fe3691731c76e85",
     "url": "/waldo/static/media/waldo5.4a340c16.jpg"
-  },
-  {
-    "revision": "cbae0d7d7b6c36e0fe492e9e2d6840ce",
-    "url": "/waldo/static/media/waldo6.cbae0d7d.jpg"
-  },
-  {
-    "revision": "23d4855c01fd62ee06dfff509e12667e",
-    "url": "/waldo/static/media/waldo7.23d4855c.jpg"
   },
   {
     "revision": "b66ab7588936cf017eb9643b2f681fbb",
