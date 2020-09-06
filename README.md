@@ -1,3 +1,3 @@
 Where's Waldo? style app using Firebase backend and React front end. 
 
-Created by Eric Hong for the Odin Project. See it live [here](erichong20.github.io/waldo)
+Created by Eric Hong for the Odin Project. See it live [here](https://erichong20.github.io/waldo)
